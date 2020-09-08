@@ -18,10 +18,16 @@ export let arrPersonas = [
   
 
 export const func = (idx: number) => {
+    
+    const persona = getPersona(idx);
 
-    if (typeof arrPersonas[idx] === 'undefined') {
+    if (typeof persona === 'undefined') {
         return {};
     }
 
-    return {...arrPersonas[idx], name: 'choy'};
+    return {...persona, name: 'choy'};
+}
+
+export const getPersona = (idx: number) => {
+    return arrPersonas[idx];
 }
