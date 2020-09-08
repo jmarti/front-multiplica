@@ -1,0 +1,1 @@
+Crear una función que recibe 2 parámetros, los cuales serán requeridos (no deben ser undefined). Si falta alguno de los parámetros, se debe lanzar un mensaje de error.
