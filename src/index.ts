@@ -1,3 +1,3 @@
-import { func1 } from './func1';
+import { func1 } from './ejercicio1';
 
 func1();
