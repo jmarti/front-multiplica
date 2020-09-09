@@ -5,21 +5,22 @@ interface Persona {
 };
 
 export const func = (personas: Persona[]) => {
-    return personas.reduce((nombres: string[], p) => {
+    return personas.filter((p) => {
+
+        if (!p.donacion) return false;
+
+        if (p.esposas.length === 0) return false;
+
         
-        if (!p.donacion) return nombres;
-
-        if (!(p.esposas.length > 0)) return nombres;
-
         for (let esposa of p.esposas) {
             const inicialEsposa = esposa.charAt(0);
             
             if (inicialEsposa === 'Y' || inicialEsposa === 'N') {
-                return [...nombres, p.name];
+                return true;
             }
         }
 
-        return nombres;
+        return false;
     
-    }, []);
+    }).map((p) => p.name);
 };
