@@ -1,0 +1,1 @@
+Tenemos una función que devuelve una promesa, la cual ocasionalmente tarda en ser resuelta. Queremos asegurarnos que si en 3 segundos no es resuelta, la promesa será ignorada y mostraremos un console.log de 'La prome se demoró'.
