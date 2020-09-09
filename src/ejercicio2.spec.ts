@@ -1,5 +1,7 @@
 import { func, collaborator } from './ejercicio2';
 
+jest.useFakeTimers();
+
 
 describe(`ejercicio 2`, () => {
     it(`Devuelve el resultado devuelto por el colaborador`, async () => {
@@ -10,32 +12,41 @@ describe(`ejercicio 2`, () => {
         expect(result).toBe("hello");
     });
 
-    it(`Si el colaborador no resuelve en 3 segundos, se ignora su resultado`, async () => {
+    describe('Si el colaborador no resuelve en 3 segundos', () => {
         const slowCollaborator: collaborator = () => {
             return new Promise((resolve, _) => {
                 setTimeout(() => resolve("Hello after a long time"), 4000);
             });
         };
 
-        const result = await func(slowCollaborator);
-        
-        expect(result).toBe("");
-    });
+        let consoleSpy: any;
 
-    it(`Si el colaborador no resuelve en 3 segundos, console.log("La prome se demoró")`, async () => {
-        const slowCollaborator: collaborator = () => {
-            return new Promise((resolve, _) => {
-                setTimeout(() => resolve("Hello after a long time"), 4000);
-            });
-        };
+        beforeEach(() => {
+            consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+        });
 
-        const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+        afterEach(() => {
+            consoleSpy.mockRestore();
+        })
 
-        await func(slowCollaborator);
+        it(`se ignora su resultado`, async () => {   
+            const promise = func(slowCollaborator);
 
-        expect(consoleSpy).toHaveBeenCalledTimes(1);
-        expect(consoleSpy).toHaveBeenLastCalledWith("La prome se demoró");
+            jest.runAllTimers();
+            
+            expect(await promise).toBe("");
+        });
+    
+        it(`La consola muestra el log "La prome se demoró"`, async () => {
 
-        consoleSpy.mockRestore()
-    });
+            const promise = func(slowCollaborator);
+            jest.runAllTimers();
+    
+            expect(consoleSpy).toHaveBeenCalledTimes(1);
+            expect(consoleSpy).toHaveBeenLastCalledWith("La prome se demoró");
+    
+            await promise;
+
+        });
+    })
 });
