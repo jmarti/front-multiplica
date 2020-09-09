@@ -1,16 +1,23 @@
 import { readFile } from "fs";
 
-export const func = (ruta: string) => {    
+export const readPort = (ruta: string): Promise<number> => {
+    const DEFAULT_PORT = 6969; 
+    
     return cargaJson(ruta)
         .then((res: any) => {
             const config = JSON.parse(res.toString());
             if (typeof config.puerto === 'undefined') {
-                return 6969;
+                return DEFAULT_PORT;
             }
-            return config.puerto;
+            
+            if (isNaN(config.puerto)) {
+                return DEFAULT_PORT;
+            }
+
+            return parseInt(config.puerto);
         })
         .catch(() => {
-            return 6969;
+            return DEFAULT_PORT;
         });
 };
 
