@@ -1,17 +1,17 @@
 {
-    "compilerOptions": {
-      "target": "es2017",
-      "module": "commonjs",
-      "lib": ["es2017"],
-      "strict": true,
-      "declaration": true,
-      "outDir": "dist",
-      "sourceMap": false,
-      "skipLibCheck": true,
-      "resolveJsonModule": true,
-      "moduleResolution": "node",
-      "allowJs": true
-    },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
-  }
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "lib": ["es2017"],
+    "strict": true,
+    "declaration": true,
+    "outDir": "dist",
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowJs": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
