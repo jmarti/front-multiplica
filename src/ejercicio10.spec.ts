@@ -1,6 +1,5 @@
 import { func } from './ejercicio10';
 import { isRegExp } from 'util';
-import { arrPersonas } from './ejercicio6';
 
 describe(`ejercicio 10`, () => {
     it(`quita las personas que no donan organos`, () => {
