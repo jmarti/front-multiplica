@@ -1,33 +1,17 @@
-export let arrPersonas = [
-  {
-    name: 'Pepe',
-    donacion: true,
-    esposas: ['Rosangela', 'Mayte']
-  },
-  {
-    name: 'Juan',
-    donacion: false,
-    esposas: ['Yahaira']
-  },
-  {
-    name: 'Lalo',
-    donacion: true,
-    esposas: []
-  }
-];
+interface Persona {
+  name: string;
+  donacion: boolean;
+  esposas: string[];
+}
 
 
-export const func = (idx: number) => {
-    
-  const persona = getPersona(idx);
+export const getPersona = (arrPersonas: Persona[], idx: number) => {
+  
+  const persona = arrPersonas[idx];
 
   if (typeof persona === 'undefined') {
-      return {};
+    return {};
   }
 
   return {...persona, name: 'choy'};
-}
-
-export const getPersona = (idx: number) => {
-  return arrPersonas[idx];
 }
