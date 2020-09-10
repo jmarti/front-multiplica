@@ -4,13 +4,13 @@ describe(`ejercicio 1`, () => {
     describe('validacion de argumentos requeridos', () => {
         it(`parametro 1 no acepta undefined`, () => {
             expect(() => {
-                func1(undefined, 2)
+                func1(undefined, 2);
             }).toThrow("argumento1 requerido");
         });
 
         it(`parametro 2 no acepta undefined`, () => {
             expect(() => {
-                func1(1)
+                func1(1);
             }).toThrow("argumento2 requerido");
         }); 
     });
