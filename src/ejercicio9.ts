@@ -31,15 +31,3 @@ export const getModeloFromPlaca = compose(
     getModelo,
     getMarca
 );
-
-
-
-/*
-function compN(funcs: Function[]) {
-    return funcs.reduce(function(g, f) {
-      return function(x: any) {
-        return g(f(x));
-      }
-    }, id);
-  }
-  */
