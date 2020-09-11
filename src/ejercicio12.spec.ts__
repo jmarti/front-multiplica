@@ -1,0 +1,67 @@
+import MockDate from 'mockdate';
+import fetchMock from "jest-fetch-mock";
+
+import { getConductorFromPlaca } from './ejercicio12';
+
+fetchMock.enableMocks();
+
+describe(`ejercicio 12`, () => {
+
+    let consoleSpy: any;
+    let date: Date;
+
+    function getPlaca(nroPlaca: string):Promise<Response> {
+        // response: {pais, dniConductor}
+        return fetch('api/placa/' + nroPlaca)
+    }
+
+    function getConductor(dniConductor: string):Promise<Response> {
+        // response: {name, dni, sexo}
+        return fetch('api/conductor/' + dniConductor)
+    }
+
+    beforeEach(() => {
+        date = new Date();
+        MockDate.set(date);
+
+        consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+    });
+
+    afterEach(() => {
+        fetchMock.resetMocks();
+        MockDate.reset();
+        consoleSpy.mockRestore();
+    })
+
+    describe(`casos inválidos`, () => {
+
+        it(`imprime en consola el msg de error cuando hay error de promesas`, async () => {
+            const time = new Date().toTimeString().split(" ")[0];
+            // mockedAxios.get.mockReturnValue(Promise.reject(new Error('la API no responde')));
+
+            fetchMock.mockResponseOnce(JSON.stringify({foo:'12345'} ))
+
+            const res = await getConductorFromPlaca('D0Q643', getPlaca, getConductor);
+    
+            // expect(res).toEqual('');
+            expect(consoleSpy).toHaveBeenCalledTimes(1);
+            expect(consoleSpy).toHaveBeenLastCalledWith(time + ' - ' + 'Error: la API no responde');
+    
+        });
+    });
+
+    describe(`casos válidos`, () => {
+
+        xit(`imprime en consola el response de getConductor {name, dni, sexo}`, async () => {
+
+            await getConductorFromPlaca('D0Q643', getPlaca, getConductor);
+
+            expect(consoleSpy).toHaveBeenCalledTimes(1);
+            expect(consoleSpy).toHaveBeenLastCalledWith({
+                name: "Dolores Fuertes",
+                dni: "43887261",
+                sexo: "F"
+            });
+        });
+    });
+});
