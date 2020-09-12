@@ -1,7 +1,6 @@
 # Ejercio para el examen de ingreso
 
-Todos los ejercicios tienen un test unitario.
-Después de instalar las dependencias necesarias,
-ejecturar `npm run test`
+Todos los ejercicios tienen su test unitario.
+Ejecutar `npm run test` después de instalar las dependencias necesarias.
 
 Gracias :)
