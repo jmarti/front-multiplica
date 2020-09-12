@@ -15,11 +15,11 @@ export interface Placa {
 }
 
 const getMarca = (placa: Placa) => {
-    return placa.marca || undefined;
+    return placa?.marca;
 }
 
 const getModelo = (marca: Marca) => {
-    return marca && marca.modelo || undefined;
+    return marca?.modelo;
 }
 
 const getModeloName = (modelo: Modelo) => {
