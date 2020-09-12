@@ -1,0 +1,1 @@
+Dado el obj del archivo trama-examen-1.json, crear la lógica para generar la siguiente estructura (array de objetos)

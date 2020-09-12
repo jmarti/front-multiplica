@@ -18,6 +18,7 @@
   "devDependencies": {
     "@types/fs-extra": "^7.0.0",
     "@types/jest": "24.0.13",
+    "@types/jsonpath": "^0.2.0",
     "@types/lodash": "^4.14.161",
     "@types/lolex": "^5.1.0",
     "@types/mock-fs": "^4.10.0",
@@ -39,6 +40,7 @@
   },
   "homepage": "https://github.com/kitko112/typescript-jest-skeleton#readme",
   "dependencies": {
+    "jsonpath": "^1.0.2",
     "lodash": "^4.17.20"
   }
 }
