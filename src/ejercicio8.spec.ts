@@ -12,10 +12,25 @@ describe(`ejercicio 8`, () => {
         consoleSpy.mockRestore();
     })
 
-    it(`cat.speak() imprime en consola el valor de la propiedad 'sound' del objeto 'dog'`, () => {
+    it(`cat.speak() imprime 'miau'`, () => {
         
-        cat.speak = cat.speak.bind(dog);
         cat.speak();
+
+        expect(consoleSpy).toHaveBeenCalledTimes(1);
+        expect(consoleSpy).toHaveBeenLastCalledWith("miau");
+    });
+
+    it(`dog.speak() imprime 'wof'`, () => {
+        
+        dog.speak();
+
+        expect(consoleSpy).toHaveBeenCalledTimes(1);
+        expect(consoleSpy).toHaveBeenLastCalledWith("wof");
+    });    
+
+    it(`usando bind puedo confundir al gato para que imprima 'wof'`, () => {
+        
+        cat.speak.bind(dog)();
 
         expect(consoleSpy).toHaveBeenCalledTimes(1);
         expect(consoleSpy).toHaveBeenLastCalledWith("wof");
